@@ -1,0 +1,157 @@
+﻿<Window x:Class="VirginBravo.MainWindow"
+        Title="ViginBravo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirginBravo"
+        mc:Ignorable="d"
+        Height="640" Width="900"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="False">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/MenuButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border Background="Gray">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="250"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+
+            <!--Кнопки выбора типа товара-->
+            <StackPanel x:Name="PTstack" Grid.Row="0" Grid.RowSpan="2">
+                <RadioButton x:Name="privaat" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/privat.jpg" Text="Приват"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="beer" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/beer.png" Text="Пиво"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="cocktail" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/cocktail3.png" Text="Коктейли"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="cognac" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/cognac.png" Text="Коньяк"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="shot" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/shot.png" Text="Шоты"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="alcofree" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/alcofree.png" Text="Alkovaba"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="gift" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/gift.png" Text="Подарки"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="special" Style="{StaticResource MenuButtonTheme}" GroupName="ProductType" Height="50" Checked="PTchanged" Margin="5,3,0,3">
+                    <RadioButton.Content>
+                        <local:MenuItem ImagePath="/resources/special1.jpg" Text="Special"/>
+                    </RadioButton.Content>
+                </RadioButton>
+
+            </StackPanel>
+
+            <!--Листбокс для пробитых товаров-->
+            <ListBox Name="LBOrder" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,5,5,5" FontSize="30" ItemsSource="{Binding productsInCurOrder}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Width="300"/>
+                            <TextBlock Text="{Binding QuantitySelled}" Width="75"/>
+                            <TextBlock Text="{Binding TotalPrice}" Width="75"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <!--Текстбокс для суммы-->
+                <TextBox x:Name="TBPrice"  IsReadOnly="True" FontFamily="/Fonts/#Oldtimer" TextAlignment="Left" Text="0" FontSize="45" Grid.Column="1" Grid.Row="1" Height="50" Margin="5,5,5,5"/>
+                <!--Листбокс для выбранных товаров-->
+                <ListBox Name="LBMenu" Grid.Column="1" Grid.Row="1" Height="275" Margin="5,5,5,5" FontSize="20" MouseLeftButtonUp="LBMenu_SelectionChanged"/>
+
+            </StackPanel>
+
+            
+
+            <StackPanel Grid.Column="3" Grid.Row="2">
+                <Button x:Name="BTNCash" Height="50" Margin="5" Click="BTNCash_Click">
+                    <Image Source="/resources/cashicon.png" Stretch="Uniform"/>
+                </Button>
+
+                <Button x:Name="BTNDrawer" FontFamily="/Fonts/#Oldtimer" FontWeight="Bold" FontSize="18" Content="Ящик" Height="50" Margin="5" Click="BTNDrawer_Click"/>
+                
+                <Button x:Name="BTNCard" Height="50" Margin="5" Click="BTNCard_Click">
+                    <Image Source="/resources/cardicon.png" Stretch="Uniform" />
+                </Button>
+                <Button Height="50" Margin="5" Click="TestButton"/>
+            </StackPanel>
+            <Button x:Name="BTNReceiptsWindow" Grid.Column="3" Grid.Row="1" VerticalAlignment="Bottom" FontFamily="/Fonts/#Oldtimer" Content="Чеки" FontWeight="Bold" FontSize="18" Height="50" Margin="5" Click="BTNReceiptsWindow_Click"/>
+            
+            <StackPanel Grid.Column="2" Grid.Row="2">
+                <Button x:Name="FastProduct1" FontWeight="Bold" FontSize="16" Content="Lady Drink" FontFamily="/Fonts/#Oldtimer" Height="30" Margin="5" Click="FastProduct_Click"/>
+                <Button x:Name="FastProduct2" FontWeight="Bold" FontSize="16" Content="Viski" FontFamily="/Fonts/#Oldtimer" Height="30" Margin="5" Click="FastProduct_Click"/>
+                <Button x:Name="FastProduct3" FontWeight="Bold" FontSize="16" Content="Tuborg" FontFamily="/Fonts/#Oldtimer" Height="30" Margin="5" Click="FastProduct_Click"/>
+                <Button x:Name="FastProduct4" FontWeight="Bold" FontSize="16" Content="Saku Orig" FontFamily="/Fonts/#Oldtimer" Height="30" Margin="5" Click="FastProduct_Click"/>
+                <Button x:Name="FastProduct5" FontWeight="Bold" FontSize="16" Content="Gin Toonik" FontFamily="/Fonts/#Oldtimer" Height="30" Margin="5" Click="FastProduct_Click"/>
+                <TextBlock Text="Приваты"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                           Margin="0,5,0,0"
+                       FontSize="15"
+                       FontFamily="/Fonts/#Oldtimer"/>
+                <DockPanel Height="40" HorizontalAlignment="Center" Width="auto">
+                    <Button x:Name="FastPriv10" FontWeight="Bold" FontFamily="/Fonts/#Oldtimer" FontSize="18" Content="10" Width="40" Margin="0,0,5,0" Click="FastPriv_Click"/>
+                    <Button x:Name="FastPriv20" FontWeight="Bold" FontFamily="/Fonts/#Oldtimer" FontSize="18" Content="20" Width="40" Margin="0,0,5,0" Click="FastPriv_Click"/>
+                    <Button x:Name="FastPriv30" FontWeight="Bold" FontFamily="/Fonts/#Oldtimer" FontSize="18" Content="30" Width="40" Click="FastPriv_Click"/>
+                </DockPanel>
+                <Button x:Name="Ticket" Tag="Sissepaas" FontFamily="/Fonts/#Oldtimer" Content="Билетик" Height="30" Margin="5" Click="FastProduct"/>
+                <Button x:Name="VBucks" Tag="V-Dollar" FontFamily="/Fonts/#Oldtimer" Content="V-Dollar" Height="30" Margin="5" Click="FastProduct"/>
+            </StackPanel>
+
+            <Button IsEnabled="True" Visibility="Hidden" Content="Test" Grid.Column="3" Grid.Row="2" Height="50" VerticalAlignment="Bottom" Click="TestButton"/>
+
+            <StackPanel Grid.Column="3" Grid.Row="0">
+                <Button x:Name="DelFromOrderBTN" Height="40" Margin="5" Content="Удалить" FontSize="20" FontFamily="/Fonts/#Oldtimer" Click="DelFromOrder_Click"/>
+                <Button x:Name="ClearOrderBTN" Height="40" Margin="5" Content="Удалить все" FontSize="20" FontFamily="/Fonts/#Oldtimer" Click="ClearOrderBTN_Click"/>
+                <Button x:Name="MultiX5BTN" Height="40" Margin="5" Content="X5" FontSize="20" FontFamily="/Fonts/#Oldtimer" Click="Multiplier"/>
+                <CheckBox x:Name="Discount" Height="40" Margin="5" Content="-50%" FontSize="20" FontFamily="/Fonts/#Oldtimer" Checked="Discount_Checked" Unchecked="Discount_Unchecked"/>
+            </StackPanel>
+        </Grid>
+
+    </Border>
+    
+</Window>
+    
+    

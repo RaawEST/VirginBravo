@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>resources\v-logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\ofont.ru_Oldtimer.ttf" />
+    <None Remove="resources\alcofree.png" />
+    <None Remove="resources\alkovababutton.png" />
+    <None Remove="resources\beer.png" />
+    <None Remove="resources\beerbutton.png" />
+    <None Remove="resources\cardicon.png" />
+    <None Remove="resources\cashicon.png" />
+    <None Remove="resources\cockailbutton.png" />
+    <None Remove="resources\cockailbutton1.png" />
+    <None Remove="resources\cocktail1.png" />
+    <None Remove="resources\cocktail2.png" />
+    <None Remove="resources\cocktail3.png" />
+    <None Remove="resources\cocktailbutton2.png" />
+    <None Remove="resources\cognac.png" />
+    <None Remove="resources\gift.png" />
+    <None Remove="resources\kingitusbutton.png" />
+    <None Remove="resources\konyakbutton.png" />
+    <None Remove="resources\privat.jpg" />
+    <None Remove="resources\shot.png" />
+    <None Remove="resources\shotidbutton.png" />
+    <None Remove="resources\special1.jpg" />
+    <None Remove="resources\special2.jpg" />
+    <None Remove="resources\specialbutton.jpg" />
+    <None Remove="resources\specialbutton2.jpg" />
+    <None Remove="resources\v-logo.png" />
+    <None Remove="Theme\buttonsImages\beer.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="resources\v-logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM\ViewModel\" />
+    <Folder Include="MVVM\View\" />
+    <Folder Include="MVVM\Model\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\ofont.ru_Oldtimer.ttf" />
+    <Resource Include="resources\alcofree.png" />
+    <Resource Include="resources\beer.png" />
+    <Resource Include="resources\cardicon.png" />
+    <Resource Include="resources\cashicon.png" />
+    <Resource Include="resources\cocktail1.png" />
+    <Resource Include="resources\cocktail2.png" />
+    <Resource Include="resources\cocktail3.png" />
+    <Resource Include="resources\cognac.png" />
+    <Resource Include="resources\gift.png" />
+    <Resource Include="resources\privat.jpg" />
+    <Resource Include="resources\shot.png" />
+    <Resource Include="resources\special1.jpg" />
+    <Resource Include="resources\special2.jpg" />
+    <Resource Include="resources\v-logo.png" />
+    <Resource Include="Theme\buttonsImages\beer.png" />
+  </ItemGroup>
+
+</Project>

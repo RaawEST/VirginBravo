@@ -1,0 +1,45 @@
+﻿<Window x:Class="VirginBravo.KGB"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirginBravo"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="KGB" FontFamily="/Fonts/#Oldtimer" FontSize="25"/>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Удалить нал дороже чем:" />
+            <TextBox x:Name="DeleteReceiptsPrice" Height="50" Margin="5" FontSize="30" Text="10"/>
+            <Button x:Name="DeleteReceipts" Height="50" Margin="5" Click="DeleteReceipts_Click"/>
+        </StackPanel>
+        <ListBox x:Name="MenuItems" Margin="5" Grid.Row="2" Height="200" VerticalAlignment="Top" SelectionChanged="MenuItems_SelectionChanged" ItemsSource="{Binding mainWindow.appData.Products}"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="Название" Margin="5"/>
+            <TextBox x:Name="ItemName" Margin="5"/>
+            <TextBlock Text="Тип" Margin="5"/>
+            <ComboBox x:Name="ItemType" Margin="5"/>
+            <TextBlock Text="Цена" Margin="5"/>
+            <TextBox x:Name="ItemPrice" Margin="5"/>
+            <DockPanel>
+                <Button x:Name="ChangeProduct" Content="Изменить" Width="75" Click="ChangeProduct_Click"/>
+                <Button x:Name="CreateProduct" Content="Создать" Width="50" HorizontalAlignment="Right" Click="CreateProduct_Click"/>
+            </DockPanel>
+            <TextBlock x:Name="Index" Text="-1"/>
+        </StackPanel>
+
+        
+
+    </Grid>
+</Window>
