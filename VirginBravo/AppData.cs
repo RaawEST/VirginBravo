@@ -7,39 +7,43 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Controls.Primitives;
 using System.Collections.ObjectModel;
+using Simplified;
 
 namespace VirginBravo
 {
-    public class AppData
+    public class AppData : BaseInpc
     {
         private static string filePath = "appData.json";
-        public int LastReceiptId { get; set; }
+        private ObservableCollection<Product> _products = new();
+        private int _lastReceiptId;
+
+        public int LastReceiptId { get => _lastReceiptId; set => Set(ref _lastReceiptId, value); } //set { lastReceiptId = value; }
         public string FastProduct1 { get; set; }
         public string FastProduct2 { get; set; }
         public string FastProduct3 { get; set; }
         public string FastProduct4 { get; set; }
         public string FastProduct5 { get; set; }
         public string KGBPass { get; set; }
-        public ObservableCollection<Product> Products { get; set; }
-
+        public ObservableCollection<Product> Products { get => _products; set => Set(ref _products, value); }
         public static void SaveAppData(AppData data)
         {
             string jsonString = JsonConvert.SerializeObject(data);
             File.WriteAllText(filePath, jsonString);
         }
 
-        public AppData GetAppData()
+        public void GetAppData()
         {
+            AppData data;
             if (File.Exists(filePath))
             {
                 string jsonString = File.ReadAllText(filePath);
 
-                AppData data = JsonConvert.DeserializeObject<AppData>(jsonString);
-                return data;
+                /*AppData*/ data = JsonConvert.DeserializeObject<AppData>(jsonString);
+                //return data;
             }
             else
             {
-               AppData newData = new AppData
+              data  /*AppData newData*/ = new AppData
                 {
                     LastReceiptId = 0,
 
@@ -128,13 +132,14 @@ namespace VirginBravo
                 }
 
                 };
-                SaveAppData(newData);
-                return newData;
+                SaveAppData(/*newData*/ data);
+                //return newData;
             }
+
+            Instance.Products = data.Products;
         }
 
+        private AppData() { }
+        public static AppData Instance { get; } = new();
     }
-
-
-
 }

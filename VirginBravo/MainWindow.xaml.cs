@@ -63,7 +63,7 @@ namespace VirginBravo
         decimal currentTax = 0.22M;
         decimal orderPrice = 0;
         decimal discount = 0;
-        public AppData appData = new AppData();
+        public AppData appData = AppData.Instance;
         public static ObservableCollection<Product> productsInCurMenu = new ObservableCollection<Product>();
         public ObservableCollection<Product> productsInCurOrder { get; } = new ObservableCollection<Product>();
         public MainWindow()
@@ -84,7 +84,7 @@ namespace VirginBravo
             string type = bttype;
 
             productsInCurMenu.Clear();
-            foreach (Product p in appData.Products)
+            foreach (Product p in AppData.Instance.Products)
             {
                 if (p.Type == type)
                     productsInCurMenu.Add(p);
@@ -211,12 +211,13 @@ namespace VirginBravo
 
         public void UpdateAppData()
         {
-            appData = appData.GetAppData();
-            FastProduct1.Content = appData.FastProduct1;
-            FastProduct2.Content = appData.FastProduct2;
-            FastProduct3.Content = appData.FastProduct3;
-            FastProduct4.Content = appData.FastProduct4;
-            FastProduct5.Content = appData.FastProduct5;
+            appData.GetAppData();
+            //appData = appData.GetAppData();
+            //FastProduct1.Content = appData.FastProduct1;
+            //FastProduct2.Content = appData.FastProduct2;
+            //FastProduct3.Content = appData.FastProduct3;
+            //FastProduct4.Content = appData.FastProduct4;
+            //FastProduct5.Content = appData.FastProduct5;
             //AppData.SaveAppData(appData);
         }
 
@@ -267,7 +268,7 @@ namespace VirginBravo
         private void PrintReceipt(int paymentType)
         {
             {
-                if (productsInCurOrder!= null)
+                if (productsInCurOrder != null)
                 {
                     appData.LastReceiptId += 1;
                     AppData.SaveAppData(appData);
@@ -292,7 +293,7 @@ namespace VirginBravo
 
             if (!Directory.Exists("Receipts"))
                 Directory.CreateDirectory("Receipts");
-            if(!Directory.Exists(trashBinPath))
+            if (!Directory.Exists(trashBinPath))
                 Directory.CreateDirectory(trashBinPath);
 
 
@@ -401,7 +402,7 @@ namespace VirginBravo
                 }
             }
             decimal tax = 0.22M;
-            message += "Receipt ID: " + newReceipt.Id + "\nDiscount: " + newReceipt.Discount + "\nTotalPrice: " +  newReceipt.TotalPrice + "\nTotalPriceNoTax: " + newReceipt.TotalPriceNoTax + "\nTotalTax: " + newReceipt.TotalTax;
+            message += "Receipt ID: " + newReceipt.Id + "\nDiscount: " + newReceipt.Discount + "\nTotalPrice: " + newReceipt.TotalPrice + "\nTotalPriceNoTax: " + newReceipt.TotalPriceNoTax + "\nTotalTax: " + newReceipt.TotalTax;
 
             MessageBox.Show(message);
             ClearOrder();

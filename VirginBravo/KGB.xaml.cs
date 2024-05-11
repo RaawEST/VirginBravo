@@ -31,8 +31,8 @@ namespace VirginBravo
             this.receiptsWindow = receiptsWindow;
             ItemPrice.PreviewTextInput += receiptsWindow.NumericTextInput;
             this.mainWindow = mainWindow;
-            MenuItems.ItemsSource = mainWindow.appData.Products;
-            MenuItems.DisplayMemberPath = "Name";
+            //MenuItems.ItemsSource = mainWindow.appData.Products;
+            //MenuItems.DisplayMemberPath = "Name";
             List<string> typeOptions = new List<string>
             {
                 "Приват",
@@ -142,7 +142,7 @@ namespace VirginBravo
                 case "Подарок":
                     selectedProduct.Type = "gift";
                     break;
-                case "Special":`
+                case "Special":
                     selectedProduct.Type = "special";
                     break;
             }

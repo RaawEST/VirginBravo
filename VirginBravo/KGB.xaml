@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VirginBravo"
         mc:Ignorable="d"
-        Title="" Height="450" Width="800">
+        Title="" Height="450" Width="800"
+        DataContext="{x:Static local:AppData.Instance}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -23,7 +24,9 @@
             <TextBox x:Name="DeleteReceiptsPrice" Height="50" Margin="5" FontSize="30" Text="10"/>
             <Button x:Name="DeleteReceipts" Height="50" Margin="5" Click="DeleteReceipts_Click"/>
         </StackPanel>
-        <ListBox x:Name="MenuItems" Margin="5" Grid.Row="2" Height="200" VerticalAlignment="Top" SelectionChanged="MenuItems_SelectionChanged" ItemsSource="{Binding mainWindow.appData.Products}"/>
+        <ListBox x:Name="MenuItems" Margin="5" Grid.Row="2" Height="200" VerticalAlignment="Top" SelectionChanged="MenuItems_SelectionChanged"
+                 ItemsSource="{Binding Products}"
+                 DisplayMemberPath="Name"/>
 
         <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Название" Margin="5"/>

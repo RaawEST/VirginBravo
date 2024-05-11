@@ -10,6 +10,9 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="False">
+    <Window.DataContext>
+        <local:ReceiptsViewModel/>
+    </Window.DataContext>
     <Border Background="#4f4f4f">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -58,8 +61,24 @@
                        FontFamily="/Fonts/#Poppins"/>
             <Button x:Name="KGB" Content="KGB" Click="KGB_Click" Width="50" Height="20" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4"/>
 
-            <ListBox x:Name="LBMonth" Margin="5" Grid.Row="1" SelectionChanged="LBMonth_SelectionChanged"/>
-            <ListBox x:Name="LBDay" Margin="5" Grid.Row="1" Grid.Column="1" SelectionChanged="LBDay_SelectionChanged"/>
+            <ListBox x:Name="LBMonth" Margin="5" Grid.Row="1" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding StringFormat=yyyy.MM}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox x:Name="LBDay" Margin="5" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Days}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Day, StringFormat=00}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding TestDays.Count}" />
+                <TextBlock Text="{Binding Number}" />
+            </StackPanel>
             <ListBox x:Name="LBReceipts" Margin="5" Grid.Row="1" Grid.Column="2" SelectionChanged="LBReceipts_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
